@@ -1,0 +1,60 @@
+{
+  "settings": {
+    "analysis": {
+      "filter": {
+        "french_elision": {
+          "type": "elision",
+          "articles_case": true,
+          "articles": [
+            "l",
+            "m",
+            "t",
+            "qu",
+            "n",
+            "s",
+            "j",
+            "d",
+            "c",
+            "jusqu",
+            "quoiqu",
+            "lorsqu",
+            "puisqu"
+          ]
+        },
+        "custom_french_stop_words": {
+          "type": "stop",
+          "stopwords_path": "custom_french_stop_wrods.txt"
+        },
+        "french_stop_words": {
+          "type": "stop",
+          "stopwords": "_french_"
+        },
+        "french_stemmer": {
+          "type": "stemmer",
+          "language": "french"
+        }
+      },
+      "analyzer": {
+        "french": {
+          "tokenizer": "standard",
+          "filter": [
+            "french_elision",
+            "lowercase",
+            "custom_french_stop_words",
+            "french_stemmer"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "blog": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "analyzer": "french"
+        }
+      }
+    }
+  }
+}
