@@ -1,6 +1,14 @@
 {
   "settings": {
     "analysis": {
+      "tokenizer": {
+        "title_tokenizer": {
+          "type": "whitespace"
+        },
+        "titi": {
+          "type": "whitespace"
+        }
+      },
       "filter": {
         "french_elision": {
           "type": "elision",
@@ -31,15 +39,17 @@
         },
         "french_stemmer": {
           "type": "stemmer",
-          "language": "french"
+          "language": "light_french"
         }
       },
       "analyzer": {
-        "french": {
+        "cv_french_analyzer": {
+          "type": "custom",
           "tokenizer": "standard",
           "filter": [
             "french_elision",
             "lowercase",
+            "french_stop_words",
             "custom_french_stop_words",
             "french_stemmer"
           ]
@@ -52,7 +62,7 @@
       "properties": {
         "title": {
           "type": "string",
-          "analyzer": "french"
+          "analyzer": "cv_french_analyzer"
         }
       }
     }
